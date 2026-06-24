@@ -1,0 +1,29 @@
+# docker-compose.yml
+version: '3.8'
+
+services:
+  api:
+    build:
+        context: .
+        dockerfile: Dockerfile
+    container_name: linkko-api
+    ports:
+      - "8000:8000"
+    environment:
+      - APP_NAME=LinkKo
+      - APP_HOST=0.0.0.0
+      - APP_PORT=8000
+      - RELOAD=False
+      - DEBUG=False
+    volumes:
+      - ./src:/app/src
+      - ./main.py:/app/main.py
+      - ./.env:/app/.env
+    restart: unless-stopped
+
+    networks:
+      - linkko-network
+
+networks:
+  linkko-network:
+    driver: bridge
