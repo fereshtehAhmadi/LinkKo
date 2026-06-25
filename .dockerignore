@@ -37,7 +37,7 @@ venv.bak/
 *.swo
 *~
 
-# لاگ‌ها
+# logs
 *.log
 logs/
 
